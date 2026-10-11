@@ -212,6 +212,15 @@ h1 {
   font-weight: 700;
   line-height: 1;
   transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
 }
 
 .social:hover {
@@ -224,40 +233,40 @@ h1 {
   transform: translateY(-1px) scale(1.01);
 }
 
-.social--telegram { color: #39a9ff; border-color: rgba(57, 169, 255, 0.8); }
+.social--telegram { border-color: rgba(57, 169, 255, 0.8); }
 .social--telegram:hover { box-shadow: 0 0 18px rgba(57, 169, 255, 0.45); }
 
-.social--tiktok { color: #ff5ca8; border-color: rgba(255, 92, 168, 0.8); }
+.social--tiktok { border-color: rgba(255, 92, 168, 0.8); }
 .social--tiktok:hover { box-shadow: 0 0 18px rgba(255, 92, 168, 0.42); }
 
-.social--instagram { color: #ff8a4c; border-color: rgba(255, 138, 76, 0.8); }
+.social--instagram { border-color: rgba(255, 138, 76, 0.8); }
 .social--instagram:hover { box-shadow: 0 0 18px rgba(255, 138, 76, 0.42); }
 
-.social--youtube { color: #ff4d4d; border-color: rgba(255, 77, 77, 0.8); }
+.social--youtube { border-color: rgba(255, 77, 77, 0.8); }
 .social--youtube:hover { box-shadow: 0 0 18px rgba(255, 77, 77, 0.42); }
 
-.social--vk { color: #5fa2ff; border-color: rgba(95, 162, 255, 0.8); }
+.social--vk { border-color: rgba(95, 162, 255, 0.8); }
 .social--vk:hover { box-shadow: 0 0 18px rgba(95, 162, 255, 0.42); }
 
-.social--discord { color: #9a9bff; border-color: rgba(154, 155, 255, 0.8); }
+.social--discord { border-color: rgba(154, 155, 255, 0.8); }
 .social--discord:hover { box-shadow: 0 0 18px rgba(154, 155, 255, 0.42); }
 
-.social--twitch { color: #a774ff; border-color: rgba(167, 116, 255, 0.8); }
+.social--twitch { border-color: rgba(167, 116, 255, 0.8); }
 .social--twitch:hover { box-shadow: 0 0 18px rgba(167, 116, 255, 0.42); }
 
-.social--x { color: #f2f2f2; border-color: rgba(242, 242, 242, 0.8); }
+.social--x { border-color: rgba(242, 242, 242, 0.8); }
 .social--x:hover { box-shadow: 0 0 18px rgba(242, 242, 242, 0.28); }
 
-.social--facebook { color: #3b82f6; border-color: rgba(59, 130, 246, 0.8); }
+.social--facebook { border-color: rgba(59, 130, 246, 0.8); }
 .social--facebook:hover { box-shadow: 0 0 18px rgba(59, 130, 246, 0.42); }
 
-.social--snapchat { color: #ffe55d; border-color: rgba(255, 229, 93, 0.8); }
+.social--snapchat { border-color: rgba(255, 229, 93, 0.8); }
 .social--snapchat:hover { box-shadow: 0 0 18px rgba(255, 229, 93, 0.42); }
 
-.social--github { color: #f1f5f9; border-color: rgba(241, 245, 249, 0.8); }
+.social--github { border-color: rgba(241, 245, 249, 0.8); }
 .social--github:hover { box-shadow: 0 0 18px rgba(241, 245, 249, 0.3); }
 
-.social--mail { color: #8bd8ff; border-color: rgba(139, 216, 255, 0.8); }
+.social--mail { border-color: rgba(139, 216, 255, 0.8); }
 .social--mail:hover { box-shadow: 0 0 18px rgba(139, 216, 255, 0.42); }
 
 .footer {
@@ -301,6 +310,11 @@ h1 {
     width: 36px;
     height: 36px;
     font-size: 13px;
+  }
+
+  .social-icon {
+    width: 20px;
+    height: 20px;
   }
 
   .links {
