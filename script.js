@@ -1,73 +1,55 @@
-/**
- * Particle animation system
- * Creates smooth floating particles without external libraries
- */
 (function initParticles() {
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
-  
-  let w = 0;
-  let h = 0;
+
+  let width = 0;
+  let height = 0;
   let dpr = 1;
   let particles = [];
-  
-  /**
-   * Calculate particle count based on screen size
-   */
-  const getParticleCount = () => {
+
+  function getCount() {
     if (window.innerWidth < 600) return 34;
-    if (window.innerWidth < 1200) return 50;
-    return 65;
-  };
-  
-  /**
-   * Initialize canvas and particles on window resize
-   */
+    if (window.innerWidth < 1200) return 52;
+    return 68;
+  }
+
   function resize() {
     dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-    w = window.innerWidth;
-    h = window.innerHeight;
-    
-    canvas.width = Math.floor(w * dpr);
-    canvas.height = Math.floor(h * dpr);
-    canvas.style.width = w + 'px';
-    canvas.style.height = h + 'px';
-    
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    canvas.width = Math.floor(width * dpr);
+    canvas.height = Math.floor(height * dpr);
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    
-    particles = Array.from({ length: getParticleCount() }, () => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
+
+    particles = Array.from({ length: getCount() }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
       r: Math.random() * 1.7 + 0.35,
       v: Math.random() * 0.48 + 0.12,
       drift: (Math.random() - 0.5) * 0.25,
       alpha: Math.random() * 0.65 + 0.2,
     }));
   }
-  
-  /**
-   * Draw and animate particles
-   */
-  function draw() {
-    ctx.clearRect(0, 0, w, h);
-    
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+
     for (const p of particles) {
       p.y += p.v;
       p.x += p.drift;
-      
-      // Wrap around edges
-      if (p.y > h + 5) {
+
+      if (p.y > height + 5) {
         p.y = -5;
-        p.x = Math.random() * w;
+        p.x = Math.random() * width;
       }
-      if (p.x < -5) {
-        p.x = w + 5;
-      }
-      if (p.x > w + 5) {
-        p.x = -5;
-      }
-      
-      // Draw particle
+
+      if (p.x < -5) p.x = width + 5;
+      if (p.x > width + 5) p.x = -5;
+
       ctx.beginPath();
       ctx.fillStyle = `rgba(90, 184, 255, ${p.alpha})`;
       ctx.shadowColor = '#168cff';
@@ -75,31 +57,24 @@
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
       ctx.fill();
     }
-    
+
     ctx.shadowBlur = 0;
-    requestAnimationFrame(draw);
+    requestAnimationFrame(animate);
   }
-  
-  // Initialize
+
   window.addEventListener('resize', resize, { passive: true });
   resize();
-  draw();
+  animate();
 })();
 
-/**
- * Smooth scroll for social links
- */
-document.querySelectorAll('.social').forEach(link => {
-  link.addEventListener('click', (e) => {
+document.querySelectorAll('.social').forEach((link) => {
+  link.addEventListener('click', (event) => {
     if (link.getAttribute('href') === '#') {
-      e.preventDefault();
+      event.preventDefault();
     }
   });
 });
 
-/**
- * Performance optimization for reduced motion
- */
 if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.body.style.scrollBehavior = 'auto';
 }
