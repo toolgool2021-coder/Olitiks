@@ -193,35 +193,72 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
 .social {
   display: grid;
   place-items: center;
-  width: 47px;
-  height: 47px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: 1px solid rgba(43, 142, 255, 0.8);
   color: #bfe6ff;
   text-decoration: none;
   background: linear-gradient(145deg, rgba(16, 65, 120, 0.68), rgba(4, 14, 28, 0.8));
   box-shadow: 0 0 16px rgba(0, 129, 255, 0.12), inset 0 0 10px rgba(0, 136, 255, 0.08);
-  font-size: 19px;
+  font-size: 15px;
   font-weight: 700;
-  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+  line-height: 1;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease, border-color 0.22s ease, color 0.22s ease;
 }
 
 .social:hover {
-  transform: translateY(-4px) scale(1.05);
+  transform: translateY(-3px) scale(1.04);
   background: rgba(14, 53, 96, 0.8);
-  box-shadow: 0 0 24px rgba(0, 137, 255, 0.5);
+  box-shadow: 0 0 20px rgba(0, 137, 255, 0.45);
 }
 
 .social:active {
-  transform: translateY(-2px) scale(1.02);
+  transform: translateY(-1px) scale(1.01);
 }
+
+.social--telegram { color: #39a9ff; border-color: rgba(57, 169, 255, 0.8); }
+.social--telegram:hover { box-shadow: 0 0 18px rgba(57, 169, 255, 0.45); }
+
+.social--tiktok { color: #ff5ca8; border-color: rgba(255, 92, 168, 0.8); }
+.social--tiktok:hover { box-shadow: 0 0 18px rgba(255, 92, 168, 0.42); }
+
+.social--instagram { color: #ff8a4c; border-color: rgba(255, 138, 76, 0.8); }
+.social--instagram:hover { box-shadow: 0 0 18px rgba(255, 138, 76, 0.42); }
+
+.social--youtube { color: #ff4d4d; border-color: rgba(255, 77, 77, 0.8); }
+.social--youtube:hover { box-shadow: 0 0 18px rgba(255, 77, 77, 0.42); }
+
+.social--vk { color: #5fa2ff; border-color: rgba(95, 162, 255, 0.8); }
+.social--vk:hover { box-shadow: 0 0 18px rgba(95, 162, 255, 0.42); }
+
+.social--discord { color: #9a9bff; border-color: rgba(154, 155, 255, 0.8); }
+.social--discord:hover { box-shadow: 0 0 18px rgba(154, 155, 255, 0.42); }
+
+.social--twitch { color: #a774ff; border-color: rgba(167, 116, 255, 0.8); }
+.social--twitch:hover { box-shadow: 0 0 18px rgba(167, 116, 255, 0.42); }
+
+.social--x { color: #f2f2f2; border-color: rgba(242, 242, 242, 0.8); }
+.social--x:hover { box-shadow: 0 0 18px rgba(242, 242, 242, 0.28); }
+
+.social--facebook { color: #3b82f6; border-color: rgba(59, 130, 246, 0.8); }
+.social--facebook:hover { box-shadow: 0 0 18px rgba(59, 130, 246, 0.42); }
+
+.social--snapchat { color: #ffe55d; border-color: rgba(255, 229, 93, 0.8); }
+.social--snapchat:hover { box-shadow: 0 0 18px rgba(255, 229, 93, 0.42); }
+
+.social--github { color: #f1f5f9; border-color: rgba(241, 245, 249, 0.8); }
+.social--github:hover { box-shadow: 0 0 18px rgba(241, 245, 249, 0.3); }
+
+.social--mail { color: #8bd8ff; border-color: rgba(139, 216, 255, 0.8); }
+.social--mail:hover { box-shadow: 0 0 18px rgba(139, 216, 255, 0.42); }
 
 .footer {
   margin-top: 24px;
@@ -261,13 +298,13 @@ h1 {
   }
 
   .social {
-    width: 42px;
-    height: 42px;
-    font-size: 17px;
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
   }
 
   .links {
-    gap: 10px;
+    gap: 8px;
   }
 }
 
