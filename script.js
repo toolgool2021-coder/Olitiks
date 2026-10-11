@@ -67,6 +67,116 @@
   animate();
 })();
 
+// ===== FIRE PARTICLES BEHIND AVATAR =====
+(function initFireParticles() {
+  const avatarWrap = document.querySelector('.avatar-wrap');
+  if (!avatarWrap) return;
+
+  const particlesContainer = document.createElement('div');
+  particlesContainer.className = 'fire-particles-container';
+  avatarWrap.appendChild(particlesContainer);
+
+  const fireParticles = [];
+  const maxParticles = 40;
+  let particleIndex = 0;
+
+  class FireParticle {
+    constructor() {
+      this.reset();
+    }
+
+    reset() {
+      this.x = Math.random() * 180 + 5; // Within avatar bounds
+      this.y = 190 + Math.random() * 30; // Below avatar
+      this.vx = (Math.random() - 0.5) * 2;
+      this.vy = Math.random() * 1.5 + 0.5; // Upward
+      this.life = 1;
+      this.maxLife = Math.random() * 40 + 30;
+      this.size = Math.random() * 8 + 3;
+      this.color = Math.random() < 0.5 ? 'fire' : 'smoke';
+    }
+
+    update() {
+      this.x += this.vx;
+      this.y -= this.vy;
+      this.life++;
+      this.vy += 0.02; // Gravity effect
+      this.size -= 0.08;
+    }
+
+    isDead() {
+      return this.life >= this.maxLife || this.size <= 0;
+    }
+
+    getElement() {
+      let element = document.getElementById(`fire-particle-${particleIndex}`);
+      if (!element) {
+        element = document.createElement('div');
+        element.id = `fire-particle-${particleIndex}`;
+        element.className = `fire-particle ${this.color}`;
+        particlesContainer.appendChild(element);
+      }
+      particleIndex++;
+      return element;
+    }
+
+    render(element) {
+      const progress = this.life / this.maxLife;
+      let opacity;
+
+      if (this.color === 'fire') {
+        opacity = Math.max(0, 1 - progress * 1.5);
+      } else {
+        opacity = Math.max(0, 0.6 - progress);
+      }
+
+      element.style.left = this.x + 'px';
+      element.style.top = this.y + 'px';
+      element.style.width = this.size + 'px';
+      element.style.height = this.size + 'px';
+      element.style.opacity = opacity;
+    }
+  }
+
+  function createParticle() {
+    if (fireParticles.length < maxParticles) {
+      fireParticles.push(new FireParticle());
+    }
+  }
+
+  function animateFireParticles() {
+    particleIndex = 0;
+
+    // Create new particles randomly
+    if (Math.random() < 0.4) {
+      createParticle();
+    }
+
+    // Update and render
+    for (let i = fireParticles.length - 1; i >= 0; i--) {
+      const particle = fireParticles[i];
+      particle.update();
+
+      if (particle.isDead()) {
+        fireParticles.splice(i, 1);
+      } else {
+        const element = particle.getElement();
+        particle.render(element);
+      }
+    }
+
+    // Remove extra elements
+    const elements = particlesContainer.querySelectorAll('.fire-particle');
+    for (let i = particleIndex; i < elements.length; i++) {
+      elements[i].remove();
+    }
+
+    requestAnimationFrame(animateFireParticles);
+  }
+
+  animateFireParticles();
+})();
+
 document.querySelectorAll('.social').forEach((link) => {
   link.addEventListener('click', (event) => {
     if (link.getAttribute('href') === '#') {
