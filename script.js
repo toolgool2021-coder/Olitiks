@@ -72,9 +72,8 @@
   const avatarWrap = document.querySelector('.avatar-wrap');
   if (!avatarWrap) return;
 
-  const particlesContainer = document.createElement('div');
-  particlesContainer.className = 'fire-particles-container';
-  avatarWrap.appendChild(particlesContainer);
+  const particlesContainer = avatarWrap.querySelector('.fire-particles-container');
+  if (!particlesContainer) return;
 
   const fireParticles = [];
   const maxParticles = 40;
@@ -86,11 +85,11 @@
     }
 
     reset() {
-      this.x = Math.random() * 180 + 5; // Within avatar bounds
-      this.y = 190 + Math.random() * 30; // Below avatar
+      this.x = Math.random() * 180 + 5;
+      this.y = 190 + Math.random() * 30;
       this.vx = (Math.random() - 0.5) * 2;
-      this.vy = Math.random() * 1.5 + 0.5; // Upward
-      this.life = 1;
+      this.vy = Math.random() * 1.5 + 0.5;
+      this.life = 0;
       this.maxLife = Math.random() * 40 + 30;
       this.size = Math.random() * 8 + 3;
       this.color = Math.random() < 0.5 ? 'fire' : 'smoke';
@@ -100,7 +99,7 @@
       this.x += this.vx;
       this.y -= this.vy;
       this.life++;
-      this.vy += 0.02; // Gravity effect
+      this.vy += 0.02;
       this.size -= 0.08;
     }
 
@@ -147,12 +146,10 @@
   function animateFireParticles() {
     particleIndex = 0;
 
-    // Create new particles randomly
     if (Math.random() < 0.4) {
       createParticle();
     }
 
-    // Update and render
     for (let i = fireParticles.length - 1; i >= 0; i--) {
       const particle = fireParticles[i];
       particle.update();
@@ -165,7 +162,6 @@
       }
     }
 
-    // Remove extra elements
     const elements = particlesContainer.querySelectorAll('.fire-particle');
     for (let i = particleIndex; i < elements.length; i++) {
       elements[i].remove();
@@ -177,10 +173,13 @@
   animateFireParticles();
 })();
 
+// ===== SOCIAL LINK HANDLER =====
 document.querySelectorAll('.social').forEach((link) => {
   link.addEventListener('click', (event) => {
-    if (link.getAttribute('href') === '#') {
-      event.preventDefault();
+    event.preventDefault();
+    const href = link.getAttribute('data-href');
+    if (href) {
+      window.open(href, '_blank', 'noopener,noreferrer');
     }
   });
 });
